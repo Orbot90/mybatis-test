@@ -1,7 +1,7 @@
 package ru.orbot90.mybatistest;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ru.orbot90.mybatistest.model.User;
+import ru.orbot90.mybatistest.model.UserEntity;
 import ru.orbot90.mybatistest.service.FooService;
 
 /**
@@ -12,7 +12,8 @@ public class Application {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
         applicationContext.scan("ru.orbot90");
         applicationContext.refresh();
-        User user = applicationContext.getBean(FooService.class).doSomeBusinessStuff("1234");
-        System.out.println(user);
+        FooService fooService = applicationContext.getBean(FooService.class);
+
+        fooService.someJdbcUpdate();
     }
 }

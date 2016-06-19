@@ -3,15 +3,20 @@ package ru.orbot90.mybatistest.mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
-import ru.orbot90.mybatistest.model.User;
+import org.apache.ibatis.annotations.Update;
+import ru.orbot90.mybatistest.model.UserEntity;
+import ru.orbot90.mybatistest.model.UserRequest;
 
 /**
  * Created by orbot on 19.06.16.
  */
 public interface UserMapper {
-    @Select("SELECT * FROM users WHERE id = #{userId}")
-    User getUser(@Param("userId") String userId);
+    @Select("SELECT * FROM userentity WHERE id = #{userId}")
+    UserEntity getUser(@Param("userId") String userId);
 
     @SelectProvider(type = UserSqlBuilder.class, method = "buildGetUserById")
-    User getUserById(@Param("id")String userId);
+    UserEntity getUserById(UserRequest request);
+
+    @Update("UPDATE userentity SET name = 'lol' WHERE id = '1234'")
+    int someUpdate();
 }

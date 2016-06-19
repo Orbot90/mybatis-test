@@ -1,10 +1,26 @@
 package ru.orbot90.mybatistest.service;
 
-import ru.orbot90.mybatistest.model.User;
+import org.springframework.transaction.annotation.Transactional;
+import ru.orbot90.mybatistest.model.UserEntity;
 
 /**
  * Created by orbot on 19.06.16.
  */
 public interface FooService {
-    User doSomeBusinessStuff(String userId);
+    UserEntity doSomeBusinessStuff(String userId);
+
+    @Transactional
+    UserEntity doSomeJpaBusinessStuff(String userId);
+
+    @Transactional
+    UserEntity doSomeJDBCBusinessStuff(String userId);
+
+    @Transactional
+    void someMybatisUpdate();
+
+    @Transactional
+    void someJpaUpdate();
+
+    @Transactional
+    void someJdbcUpdate();
 }
