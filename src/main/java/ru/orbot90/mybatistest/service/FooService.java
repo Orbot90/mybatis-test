@@ -23,4 +23,7 @@ public interface FooService {
 
     @Transactional
     void someJdbcUpdate();
+
+    @Transactional
+    UserEntity selectWithMediator(String userId);
 }

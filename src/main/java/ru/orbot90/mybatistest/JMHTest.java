@@ -25,33 +25,38 @@ public class JMHTest {
         fooService = context.getBean(FooService.class);
     }
 
+    @Benchmark
+    public void testMybatis() {
+        fooService.doSomeBusinessStuff("1234");
+    }
+
+    @Benchmark
+    public void testSpringData() {
+        fooService.doSomeJpaBusinessStuff("1234");
+    }
+
+    @Benchmark
+    public void testJdbcTemplate() {
+        fooService.doSomeJDBCBusinessStuff("1234");
+    }
+
+    @Benchmark
+    public void testSpringMediatorMybatis() {
+        fooService.selectWithMediator("1234");
+    }
+
 //    @Benchmark
-//    public void testMybatis() {
-//        fooService.doSomeBusinessStuff("1234");
+//    public void testUpdateMybatis() {
+//        fooService.someMybatisUpdate();
 //    }
 //
 //    @Benchmark
-//    public void testSpringData() {
-//        fooService.doSomeJpaBusinessStuff("1234");
+//    public void testUpdateJpa() {
+//        fooService.someJpaUpdate();
 //    }
 //
 //    @Benchmark
-//    public void testJdbcTemplate() {
-//        fooService.doSomeJDBCBusinessStuff("1234");
+//    public void testUpdateJdbc() {
+//        fooService.someJdbcUpdate();
 //    }
-
-    @Benchmark
-    public void testUpdateMybatis() {
-        fooService.someMybatisUpdate();
-    }
-
-    @Benchmark
-    public void testUpdateJpa() {
-        fooService.someJpaUpdate();
-    }
-
-    @Benchmark
-    public void testUpdateJdbc() {
-        fooService.someJdbcUpdate();
-    }
 }

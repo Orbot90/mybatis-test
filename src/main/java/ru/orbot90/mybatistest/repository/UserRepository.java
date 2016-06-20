@@ -10,7 +10,7 @@ import ru.orbot90.mybatistest.model.UserEntity;
 /**
  * Created by orbot on 19.06.16.
  */
-public interface UserRepository extends JpaRepository<UserEntity, String> {
+public interface UserRepository extends UserRepositoryCustom, JpaRepository<UserEntity, String> {
 
     @Transactional
     @Modifying

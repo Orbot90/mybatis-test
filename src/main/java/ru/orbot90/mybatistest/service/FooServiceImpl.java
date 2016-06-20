@@ -2,7 +2,6 @@ package ru.orbot90.mybatistest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.orbot90.mybatistest.mapper.UserMapper;
@@ -11,8 +10,6 @@ import ru.orbot90.mybatistest.model.UserRequest;
 import ru.orbot90.mybatistest.repository.UserRepository;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Created by orbot on 19.06.16.
@@ -72,5 +69,11 @@ public class FooServiceImpl implements FooService {
     @Transactional
     public void someJdbcUpdate() {
         jdbcTemplate.update("UPDATE userentity SET name = 'lol' WHERE id = '1234'");
+    }
+
+    @Override
+    @Transactional
+    public UserEntity selectWithMediator(String userId) {
+        return userRepository.findByIdThroughMybatis(userId);
     }
 }

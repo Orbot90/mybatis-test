@@ -14,6 +14,6 @@ public class Application {
         applicationContext.refresh();
         FooService fooService = applicationContext.getBean(FooService.class);
 
-        fooService.someJdbcUpdate();
+        System.out.println(fooService.selectWithMediator("1234"));
     }
 }
