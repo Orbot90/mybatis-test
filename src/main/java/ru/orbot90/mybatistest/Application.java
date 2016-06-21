@@ -1,7 +1,6 @@
 package ru.orbot90.mybatistest;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ru.orbot90.mybatistest.model.UserEntity;
 import ru.orbot90.mybatistest.service.FooService;
 
 /**

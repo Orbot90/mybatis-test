@@ -9,6 +9,7 @@ import ru.orbot90.mybatistest.model.UserEntity;
 import ru.orbot90.mybatistest.model.UserRequest;
 import ru.orbot90.mybatistest.repository.UserRepository;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 /**
@@ -17,11 +18,17 @@ import javax.sql.DataSource;
 @Service
 public class FooServiceImpl implements FooService {
 
-    @Autowired
     private UserMapper userMapper;
-    @Autowired
     private UserRepository userRepository;
     private JdbcTemplate jdbcTemplate;
+
+    @PostConstruct
+    private void init() {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId("1234");
+        userEntity.setName("lol");
+        userRepository.save(userEntity);
+    }
 
     @Autowired
     public FooServiceImpl(DataSource dataSource, UserMapper userMapper, UserRepository userRepository) {
