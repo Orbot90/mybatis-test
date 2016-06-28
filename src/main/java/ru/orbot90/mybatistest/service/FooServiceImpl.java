@@ -1,5 +1,6 @@
 package ru.orbot90.mybatistest.service;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import ru.orbot90.mybatistest.repository.UserRepository;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.util.List;
 
 /**
  * Created by orbot on 19.06.16.
@@ -28,6 +30,10 @@ public class FooServiceImpl implements FooService {
         userEntity.setId("1234");
         userEntity.setName("lol");
         userRepository.save(userEntity);
+        UserEntity user2 = new UserEntity();
+        user2.setId("1235");
+        user2.setName("lol2");
+        userRepository.save(user2);
     }
 
     @Autowired
@@ -35,6 +41,13 @@ public class FooServiceImpl implements FooService {
         jdbcTemplate = new JdbcTemplate(dataSource);
         this.userMapper = userMapper;
         this.userRepository = userRepository;
+    }
+
+    @Override
+    @Transactional
+    public List<UserEntity> getUsers() {
+        RowBounds rowBounds = new RowBounds(0, 1);
+        return userMapper.getUsers(rowBounds);
     }
 
     @Override

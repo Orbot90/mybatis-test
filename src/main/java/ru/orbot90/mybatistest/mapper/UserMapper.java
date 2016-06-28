@@ -4,8 +4,11 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.session.RowBounds;
 import ru.orbot90.mybatistest.model.UserEntity;
 import ru.orbot90.mybatistest.model.UserRequest;
+
+import java.util.List;
 
 /**
  * Created by orbot on 19.06.16.
@@ -19,4 +22,7 @@ public interface UserMapper {
 
     @Update("UPDATE userentity SET name = 'lol' WHERE id = '1234'")
     int someUpdate();
+
+    @Select("SELECT * FROM userentity")
+    List<UserEntity> getUsers(RowBounds rowBounds);
 }

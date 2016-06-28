@@ -13,6 +13,6 @@ public class Application {
         applicationContext.refresh();
         FooService fooService = applicationContext.getBean(FooService.class);
 
-        System.out.println(fooService.selectWithMediator("1234"));
+        System.out.println(fooService.getUsers());
     }
 }
